@@ -6,16 +6,30 @@ import css from './NoteForm.module.css';
 import { useId } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createNote } from '../../lib/api';
+import { useNoteDraftStore } from '../../lib/store/noteStore';
 
 export default function NoteForm() {
   const router = useRouter();
   const fieldId = useId();
   const queryClient = useQueryClient();
+  const { draft, setDraft, clearDraft } = useNoteDraftStore();
+
+  const handleChange = (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    setDraft({
+      ...draft,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   const { mutate, isPending } = useMutation({
     mutationFn: createNote,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['notes'] });
+      clearDraft();
       router.push('/notes/filter/all');
     },
   });
@@ -41,6 +55,8 @@ export default function NoteForm() {
           <input
             type="text"
             name="title"
+            defaultValue={draft?.title}
+            onChange={handleChange}
             id={`${fieldId}-title`}
             className={css.input}
           />
@@ -53,6 +69,8 @@ export default function NoteForm() {
           <textarea
             name="content"
             id={`${fieldId}-content`}
+            defaultValue={draft?.content}
+            onChange={handleChange}
             className={css.textarea}
           ></textarea>
         </div>
@@ -61,7 +79,13 @@ export default function NoteForm() {
           <label className={css.label} htmlFor={`${fieldId}-tag`}>
             Tag
           </label>
-          <select name="tag" id={`${fieldId}-tag`} className={css.select}>
+          <select
+            name="tag"
+            id={`${fieldId}-tag`}
+            defaultValue={draft?.tag}
+            onChange={handleChange}
+            className={css.select}
+          >
             {NOTE_TAGS.map(tag => (
               <option key={tag} value={tag}>
                 {tag}

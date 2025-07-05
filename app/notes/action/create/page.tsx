@@ -1,6 +1,34 @@
+import { Metadata } from 'next';
 import NoteForm from '../../../../components/NoteForm/NoteForm';
 import css from './CreateNote.module.css';
-// import { NOTE_TAGS } from '../../../../types/note';
+
+export const metadata: Metadata = {
+  title: 'Create Note',
+  description:
+    'Creating note in simple app for managing personal notes - NoteHub',
+  openGraph: {
+    title: 'Create Note',
+    description:
+      'Creating note in simple app for managing personal notes - NoteHub',
+    url: ``,
+    siteName: 'NoteHub',
+    images: [
+      {
+        url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Create Note',
+      },
+    ],
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Create Note',
+    description: 'Simple app for managing personal notes',
+    images: ['https://ac.goit.global/fullstack/react/notehub-og-meta.jpg'],
+  },
+};
 
 export default async function CreateNote() {
   return (
