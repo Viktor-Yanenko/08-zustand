@@ -1,28 +1,22 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Page not found',
+  title: '404 - Page not found | NoteHub',
   description: 'Page you are looking for does not exist',
   openGraph: {
-    title: 'Page not found',
+    title: '404 - Page not found | NoteHub',
     description: 'Page you are looking for does not exist',
-    url: `/not-found`,
+    url: `https://08-zustand-rho.vercel.app/404`,
     siteName: 'NoteHub',
     images: [
       {
         url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
         width: 1200,
         height: 630,
-        alt: 'Page not found',
+        alt: 'NoteHub 404',
       },
     ],
-    type: 'article',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Page not found',
-    description: 'Page you are looking for does not exist',
-    images: ['https://ac.goit.global/fullstack/react/notehub-og-meta.jpg'],
+    type: 'website',
   },
 };
 
