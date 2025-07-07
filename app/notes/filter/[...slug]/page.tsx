@@ -12,12 +12,15 @@ export async function generateMetadata({
   const { slug } = await params;
   const tag = slug[0] === 'all' ? undefined : slug[0];
 
+  const title = tag ? `Notes: ${tag}` : 'All notes';
+  const descr = tag ? `Notes filtered by '${tag}' tag` : 'All notes';
+
   return {
-    title: tag ? `Notes: ${tag}` : 'All notes',
-    description: tag ? `Notes filtered by '${tag}' tag` : 'All notes',
+    title: title,
+    description: descr,
     openGraph: {
-      title: tag ? `Notes: ${tag}` : 'All notes',
-      description: tag ? `Notes filtered by '${tag}' tag` : 'All notes',
+      title: title,
+      description: descr,
       url: `https://08-zustand-rho.vercel.app/notes/filter/${slug.join('/')}`,
       siteName: 'NoteHub',
       images: [
@@ -25,15 +28,15 @@ export async function generateMetadata({
           url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
           width: 1200,
           height: 630,
-          alt: tag ? `Notes: ${tag}` : 'All notes',
+          alt: title,
         },
       ],
       type: 'article',
     },
     twitter: {
       card: 'summary_large_image',
-      title: tag ? `Notes: ${tag}` : 'All notes',
-      description: tag ? `Notes filtered by '${tag}' tag` : 'All notes',
+      title: title,
+      description: descr,
       images: ['https://ac.goit.global/fullstack/react/notehub-og-meta.jpg'],
     },
   };

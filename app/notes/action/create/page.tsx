@@ -17,7 +17,7 @@ export const metadata: Metadata = {
         url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
         width: 1200,
         height: 630,
-        alt: 'Create Note',
+        alt: 'Note creation interface in NoteHub - a simple app for managing personal notes',
       },
     ],
     type: 'article',
